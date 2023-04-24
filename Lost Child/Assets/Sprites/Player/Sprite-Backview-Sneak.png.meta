@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8545da890157e9438dad199977f4242
+guid: 95783ec93e47d6f46b457845df9cccd1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite_walk01_0
+      name: Sprite-Backview-Sneak_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92ab12db34a041148b96eefe1c4b5b79
-      internalID: -856600081
+      spriteID: 47f8dbd86ef9ccf41aa4b333e08ae334
+      internalID: -1704287247
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_walk01_1
+      name: Sprite-Backview-Sneak_1
       rect:
         serializedVersion: 2
         x: 32
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d8007f0d2edf9b4597d613192ce44c8
-      internalID: -1580016151
+      spriteID: 2894cddfa393b7e45aa8d3dbf094bc91
+      internalID: 1772542542
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_walk01_2
+      name: Sprite-Backview-Sneak_2
       rect:
         serializedVersion: 2
         x: 64
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb4c6f6338015e44998781a7ba93bc46
-      internalID: 333862650
+      spriteID: 1bda4f1f0a88c084ba99704a4568eb8f
+      internalID: 1588828606
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite_walk01_3
+      name: Sprite-Backview-Sneak_3
       rect:
         serializedVersion: 2
         x: 96
@@ -182,8 +182,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b10798e6277e8b45aefa4d12b1c93a8
-      internalID: 1234341568
+      spriteID: 432a6b4bd3a3fbb43b7214d7b8a90042
+      internalID: -1886669323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-Backview-Sneak_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 045610daa92f9b042abc2c814516066b
+      internalID: -1584034140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-Backview-Sneak_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80d460fdfa2faf944b458f9ae049231a
+      internalID: 1948152813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-Backview-Sneak_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b07cd473da7b0024c8152ea7710b5afb
+      internalID: 671095081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-Backview-Sneak_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f421ea4a7558074ea74681a4b4cc967
+      internalID: -1589997245
       vertices: []
       indices: 
       edges: []
@@ -199,10 +283,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite_walk01_0: -856600081
-      Sprite_walk01_1: -1580016151
-      Sprite_walk01_2: 333862650
-      Sprite_walk01_3: 1234341568
+      Sprite-Backview-Sneak_0: -1704287247
+      Sprite-Backview-Sneak_1: 1772542542
+      Sprite-Backview-Sneak_2: 1588828606
+      Sprite-Backview-Sneak_3: -1886669323
+      Sprite-Backview-Sneak_4: -1584034140
+      Sprite-Backview-Sneak_5: 1948152813
+      Sprite-Backview-Sneak_6: 671095081
+      Sprite-Backview-Sneak_7: -1589997245
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
