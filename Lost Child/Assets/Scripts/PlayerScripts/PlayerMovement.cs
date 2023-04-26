@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator timeReflectionAnimator;
     public AnimatorControllerParameter[] parameters;
-
+    [SerializeField] private Rigidbody2D rb2d;
 
 
     private void Awake()
