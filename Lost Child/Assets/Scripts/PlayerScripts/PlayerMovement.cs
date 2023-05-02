@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        // Get Components from Player
+        // Get Components from Players
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animation>();
