@@ -12,8 +12,26 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sprinting")]
     public float sprintSpeed;
     public float sprintAnimationSpeed;
+    [Header("Endurance")]
+    [Tooltip("The Endurance the Player has (Ausdauer)")]
+    public float startEndurance = 100f;
+    [Tooltip("The Endurance in % the Player lose while Running")]
+    public float losingEndurance = 1.0f;
+    [Tooltip("The Endurance in % the Player get while Walking")]
+    public float healingEndurance = 1.0f;
+    [Tooltip("The Endurance the Player has (Ausdauer)")]
+    public float currentEndurance = 100f;
+    [Tooltip("Losing Time")]
+    public float sendRateLosing = 0.5f;
+    [Tooltip("Healing Time")]
+    public float sendRateHealing = 0.5f;
+    [Tooltip("Healing Time Standing")]
+    public float sendRateStanding = 0.5f;
 
+    [Header("Animation")]
     public Animator animator;
+    public AnimatorControllerParameter[] parameters;
+
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private Vector2 movement;
@@ -21,17 +39,16 @@ public class PlayerMovement : MonoBehaviour
     private bool lookedLeft = false;
     private bool isSprinting = false;
     private bool isSneaking = false;
+    private Animation anim;
 
-    public Animator timeReflectionAnimator;
-    public AnimatorControllerParameter[] parameters;
-    [SerializeField] private Rigidbody2D rb2d;
-
+    private float tempTime;
 
     private void Awake()
     {
         // Get Components from Player
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animation>();
     }
 
     void Update()
@@ -39,40 +56,91 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        foreach (AnimatorControllerParameter parameter in timeReflectionAnimator.parameters)
+        if (currentEndurance < 100 && (!isSprinting || (isSprinting && movement.x == 0 && movement.y == 0)))
         {
-            timeReflectionAnimator.SetBool(parameter.name, false);
+            if(movement.x == 0 && movement.y == 0)
+            {
+                tempTime += Time.deltaTime;
+                if (tempTime > sendRateStanding)
+                {
+                    tempTime -= sendRateStanding;
+                    if (currentEndurance < 100) currentEndurance += startEndurance * (healingEndurance / 100);
+                }
+            } 
+            else
+            {
+                tempTime += Time.deltaTime;
+                if (tempTime > sendRateHealing)
+                {
+                    tempTime -= sendRateHealing;
+                    if (currentEndurance < 100) currentEndurance += startEndurance * (healingEndurance / 100);
+                }
+            }
         }
 
         if (movement.x != 0 || movement.y != 0)
         {
+            
+            if(currentEndurance > 0)
+            {
+                if (isSprinting)
+                {
+                    animator.speed = sprintAnimationSpeed;
+                    tempTime += Time.deltaTime;
+                    if (tempTime > sendRateLosing)
+                    {
+                        tempTime -= sendRateLosing;
+                        currentEndurance -= startEndurance * (losingEndurance / 100);
+                    }
+                }
+                else animator.speed = 1.0f;
+            }
             if(movement.x != 0)
             {
-                if (isSneaking) animator.SetBool("SneakingSideways", true);
-                else if (isSprinting) animator.SetBool("SprintingSideways", true);
-                else animator.SetBool("WalkingSideways", true);
+                if (isSneaking) animator.Play("Player-Sneak-Sideways");
+               /* else if (isSprinting) animator.speed = 1.5f;*//*animator.Play("Player-Sprint-Sideways");*/
+                else animator.Play("Player-Walk-Sideways");
 
+                // Go Right
                 if (movement.x > 0)
                 {
                     sr.flipX = false;
                     lookedLeft = false;
                 }
+                // Go Left
                 else if (movement.x < 0)
                 {
                     sr.flipX = true;
                     lookedLeft = true;
                 }
-                else
+            }
+            else if(movement.y != 0)
+            {
+                // Go Up
+                if(movement.y > 0)
                 {
-                    animator.SetBool("SneakingSideways", false);
-                    animator.SetBool("SprintingSideways", false);
-                    animator.SetBool("WalkingSideways", false);
+                    if (isSneaking) animator.Play("Player-Sneak-Up");
+                    /*else if (isSprinting) animator.speed = 1.5f;*//*animator.Play("Player-Sprint-Up");*/
+                    else animator.Play("Player-Walk-Up");
+                } 
+                // Go Down
+                else if (movement.y < 0)
+                {
+                    if (isSneaking) animator.Play("Player-Sneak-Down");
+                    /*else if (isSprinting) animator.speed = 1.5f;*//*animator.Play("Player-Sprint-Down");*/
+                    else animator.Play("Player-Walk-Down");
                 }
+            }
+            else
+            {
+                animator.Play("Player-Idle");
+                if (lookedLeft) sr.flipX = true;
+                else sr.flipX = false;
             }
         }
         else
         {
-            animator.SetBool("WalkingSideways", false);
+            animator.Play("Player-Idle");
             if (lookedLeft) sr.flipX = true;
             else sr.flipX = false;
         }
@@ -92,7 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
         // Sprinting
-        else if (Input.GetKey(KeyCode.LeftShift))
+        else if (Input.GetKey(KeyCode.LeftShift) && currentEndurance > 0)
         {
             rb.velocity = moveDir * sprintSpeed * Time.fixedDeltaTime;
             isSneaking = false;
