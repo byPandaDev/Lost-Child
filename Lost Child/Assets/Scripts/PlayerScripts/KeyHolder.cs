@@ -11,32 +11,32 @@ public class KeyHolder : MonoBehaviour
     keyList = new List<Key.KeyType>();
     }
 
-    public void AddKey(Key.KeyType keyType)
+    public void AddKey(Key.KeyType keyType)                     //Here we have a Methode to add the keytype to list 
     {
         keyList.Add(keyType);
     }
 
-    public void RemoveKey(Key.KeyType keyType)
+    public void RemoveKey(Key.KeyType keyType)                  //Here we have a Methode to remove the keytype from list 
     {
         keyList.Remove(keyType);
     }
 
-    public bool ContainsKey(Key.KeyType keyType)
+    public bool ContainsKey(Key.KeyType keyType)                //Here we have a bool saying if we contain key or not
     {
         return keyList.Contains(keyType);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)          //Here the collision check happens to pick up key with collider trigger 
     {
         Key key = collider.GetComponent<Key>();
-        if (key != null)
+        if (key != null)                                        //if collider doesnt exist nothing happens but if collider exists ,execute \/
         {
             AddKey(key.GetKeyType());
             Destroy(key.gameObject);
         }
 
-        KeyDoor keyDoor = collider.GetComponent<KeyDoor>();
-        if (keyDoor != null)
+        KeyDoor keyDoor = collider.GetComponent<KeyDoor>();     
+        if (keyDoor != null)                                    //if collider doesnt exist nothing happens but if collider exists ,execute \/
         {
             if (ContainsKey(keyDoor.GetKeyType()))
             {

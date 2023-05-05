@@ -6,7 +6,13 @@ public class KeyDoor : MonoBehaviour
 {
     
     [SerializeField] private Key.KeyType keyType;
+    private Animation anim;
 
+    private void Awake()
+    {
+        anim = GetComponent<Animation>();
+        anim.IsPlaying("Open Door");
+    }
     public Key.KeyType GetKeyType()
     {
         return keyType;
@@ -14,7 +20,7 @@ public class KeyDoor : MonoBehaviour
 
     public void OpenDoor()
     {
-        gameObject.SetActive(false);
+        anim.Play("Open Door");
     }
 
 }
