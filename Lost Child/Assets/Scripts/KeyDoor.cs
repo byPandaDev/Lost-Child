@@ -6,12 +6,11 @@ public class KeyDoor : MonoBehaviour
 {
     
     [SerializeField] private Key.KeyType keyType;
-    private Animation anim;
+    [SerializeField] private Animator DoorAnim;
 
     private void Awake()
     {
-        anim = GetComponent<Animation>();
-        anim.IsPlaying("Open Door");
+        DoorAnim = GetComponent<Animator>();
     }
     public Key.KeyType GetKeyType()
     {
@@ -20,7 +19,7 @@ public class KeyDoor : MonoBehaviour
 
     public void OpenDoor()
     {
-        anim.Play("Open Door");
+        DoorAnim.Play("OpenDoor");
     }
 
 }
