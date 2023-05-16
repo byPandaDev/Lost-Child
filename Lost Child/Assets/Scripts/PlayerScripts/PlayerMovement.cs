@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Walking")]
-    public float speed;
+    public float speed = 50f;
     [Header("Sneaking")]
-    public float sneakSpeed;
-    public float sneekAnimationSpeed;
+    public float sneakSpeed = 25f;
+    public float sneekAnimationSpeed = 0.5f;
     [Header("Sprinting")]
-    public float sprintSpeed;
-    public float sprintAnimationSpeed;
+    public float sprintSpeed = 75f;
+    public float sprintAnimationSpeed = 1.5f;
     [Header("Endurance")]
     [Tooltip("The Endurance the Player has (Ausdauer)")]
     public float startEndurance = 100f;
@@ -22,15 +22,14 @@ public class PlayerMovement : MonoBehaviour
     [Tooltip("The Endurance the Player has (Ausdauer)")]
     public float currentEndurance = 100f;
     [Tooltip("Losing Time")]
-    public float sendRateLosing = 0.5f;
+    public float sendRateLosing = 0.1f;
     [Tooltip("Healing Time")]
     public float sendRateHealing = 0.5f;
     [Tooltip("Healing Time Standing")]
-    public float sendRateStanding = 0.5f;
+    public float sendRateStanding = 0.3f;
 
     [Header("Animation")]
     public Animator animator;
-    public AnimatorControllerParameter[] parameters;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -39,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     private bool lookedLeft = false;
     private bool isSprinting = false;
     private bool isSneaking = false;
-    private Animation anim;
 
     private float tempTime;
 
@@ -48,7 +46,6 @@ public class PlayerMovement : MonoBehaviour
         // Get Components from Player
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animation>();
     }
 
     void Update()
